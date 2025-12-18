@@ -9,6 +9,9 @@ const router = Router();
 router.use(authenticate);
 
 // Protected route - accessible by 'user' and 'admin'
+// the routes process requests asynchronously and handle errors gracefully
+// this way we ensure that any unexpected issues do not crash the server
+// while also providing meaningful feedback to the client and concurrent requests are handled efficiently
 router.get(
 	'/user/dataAccessible',
 	authorize('user', 'admin'),
