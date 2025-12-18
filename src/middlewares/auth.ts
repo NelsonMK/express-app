@@ -43,6 +43,11 @@ export function authorize(...allowedRoles: UserRole[]) {
 		}
 
 		if (!allowedRoles.includes(req.user.role)) {
+			console.log(
+				`User with role ${req.user.role} tried to access route [${
+					req.path
+				}] that requires role ${allowedRoles.join(' ')}`
+			);
 			return res.status(403).json({
 				error: 'Forbidden: insufficient permissions',
 			});

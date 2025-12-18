@@ -35,6 +35,7 @@ export function rateLimiter(req: Request, res: Response, next: NextFunction) {
 
 	// Exceeded limit
 	if (entry.count >= MAX_REQUESTS) {
+		console.log(`User ${userId} has exceeded the rate limit`);
 		return res.status(429).json({
 			error: 'Too many requests',
 			retryAfter: Math.ceil((entry.resetTime - now) / 1000),
